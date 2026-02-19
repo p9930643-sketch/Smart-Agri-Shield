@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smart Agri Shield | Crop Monitoring & Marketplace</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+    color:white;
+}
+
+header{
+    text-align:center;
+    padding:30px;
+    background:rgba(0,0,0,0.6);
+}
+
+section{
+    margin:30px auto;
+    width:90%;
+    max-width:1100px;
+    background:rgba(255,255,255,0.08);
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 0 15px rgba(0,0,0,0.5);
+}
+
+h2{
+    margin-bottom:15px;
+    color:#ffd54f;
+}
+
+input,select{
+    width:100%;
+    padding:10px;
+    margin:8px 0;
+    border:none;
+    border-radius:8px;
+}
+
+button{
+    padding:10px 20px;
+    background:#ffca28;
+    border:none;
+    border-radius:8px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    background:#ffc107;
+}
+
+.result{
+    margin-top:10px;
+    font-weight:bold;
+}
+
+.inventory-item, .buyer-card{
+    background:rgba(255,255,255,0.1);
+    padding:12px;
+    margin:10px 0;
+    border-radius:10px;
+}
+
+.buyer-card{
+    border-left:5px solid #ffca28;
+}
+
+footer{
+    text-align:center;
+    padding:20px;
+    background:rgba(0,0,0,0.7);
+    margin-top:30px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>🌾 Smart Agri Shield</h1>
+<p>Crop Disease Detection | Soil Monitoring | Inventory | Premium Buyers Network</p>
+</header>
+
+<!-- Disease Detection -->
+<section>
+<h2>🦠 Early Crop Disease Detection</h2>
+<input type="file" id="cropImage">
+<button onclick="detectDisease()">Detect Disease</button>
+<p id="diseaseResult" class="result"></p>
+</section>
+
+<!-- Soil Check -->
+<section>
+<h2>🌱 Soil Health Check</h2>
+<label>Soil Moisture (%)</label>
+<input type="number" id="moisture">
+<label>Soil pH Level</label>
+<input type="number" id="ph">
+<button onclick="checkSoil()">Analyze Soil</button>
+<p id="soilResult" class="result"></p>
+</section>
+
+<!-- Inventory -->
+<section>
+<h2>📦 Post-Harvest Inventory Management</h2>
+
+<input type="text" id="cropName" placeholder="Crop Name">
+<input type="number" id="quantity" placeholder="Quantity (kg)">
+<select id="condition">
+<option value="Fresh">Fresh</option>
+<option value="Moderate">Moderate</option>
+<option value="Spoiling">Spoiling Soon</option>
+</select>
+<button onclick="addInventory()">Add to Inventory</button>
+
+<h3>Current Inventory</h3>
+<div id="inventoryList">
+<div class="inventory-item">🌾 Rice - 500kg - Fresh</div>
+<div class="inventory-item">🌽 Maize - 300kg - Moderate</div>
+<div class="inventory-item">🌾 Wheat - 450kg - Fresh</div>
+<div class="inventory-item">🍅 Tomatoes - 200kg - Spoiling Soon ⚠</div>
+<div class="inventory-item">🥭 Mangoes - 250kg - Moderate</div>
+</div>
+</section>
+
+<!-- Premium Buyers -->
+<section>
+<h2>🏆 Indian Premium Crop Buyers</h2>
+
+<div class="buyer-card">
+<strong>ITC Agri Business Division</strong><br>
+📍 Hyderabad, Telangana<br>
+📞 +91 98765 43210
+</div>
+
+<div class="buyer-card">
+<strong>Adani Wilmar Ltd.</strong><br>
+📍 Ahmedabad, Gujarat<br>
+📞 +91 91234 56789
+</div>
+
+<div class="buyer-card">
+<strong>Tata Consumer Products</strong><br>
+📍 Mumbai, Maharashtra<br>
+📞 +91 99887 66554
+</div>
+
+<div class="buyer-card">
+<strong>Mother Dairy Fruits & Vegetables</strong><br>
+📍 New Delhi, India<br>
+📞 +91 90909 80808
+</div>
+
+<div class="buyer-card">
+<strong>Reliance Retail Agri Division</strong><br>
+📍 Navi Mumbai, Maharashtra<br>
+📞 +91 97777 66666
+</div>
+
+</section>
+
+<footer>
+© 2026 Smart Agri Shield | Connecting Farmers to Premium Indian Buyers 🇮🇳
+</footer>
+
+<script>
+
+// Disease Detection Demo
+function detectDisease(){
+    const diseases=[
+        "Healthy Crop 🌿",
+        "Early Blight Detected ⚠",
+        "Leaf Spot Infection ⚠",
+        "Powdery Mildew Risk ⚠"
+    ];
+    const result=diseases[Math.floor(Math.random()*diseases.length)];
+    document.getElementById("diseaseResult").innerText="Result: "+result;
+}
+
+// Soil Analysis
+function checkSoil(){
+    let moisture=document.getElementById("moisture").value;
+    let ph=document.getElementById("ph").value;
+    let result="";
+
+    if(moisture<30){
+        result+="Low Moisture - Irrigation Required 💧\n";
+    }else{
+        result+="Moisture Level Good ✅\n";
+    }
+
+    if(ph<6){
+        result+="Soil Acidic ⚠";
+    }else if(ph>8){
+        result+="Soil Alkaline ⚠";
+    }else{
+        result+="Soil pH Balanced ✅";
+    }
+
+    document.getElementById("soilResult").innerText=result;
+}
+
+// Add Inventory
+function addInventory(){
+    let name=document.getElementById("cropName").value;
+    let qty=document.getElementById("quantity").value;
+    let condition=document.getElementById("condition").value;
+
+    let warning="";
+    if(condition==="Spoiling"){
+        warning=" ⚠";
+    }
+
+    let div=document.createElement("div");
+    div.className="inventory-item";
+    div.innerHTML=`${name} - ${qty}kg - ${condition}${warning}`;
+
+    document.getElementById("inventoryList").appendChild(div);
+}
+
+</script>
+
+</body>
+</html>
